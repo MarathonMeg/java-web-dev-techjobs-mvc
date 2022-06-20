@@ -28,6 +28,8 @@ public class ListController {
         columnChoices.put("positionType", "Position Type");
         columnChoices.put("coreCompetency", "Skill");
 
+        //TODO: 2 add the View all Link, but the headings are shifted off from the table data
+        tableChoices.put("all", "View All");
         tableChoices.put("employer", JobData.getAllEmployers());
         tableChoices.put("location", JobData.getAllLocations());
         tableChoices.put("positionType", JobData.getAllPositionTypes());
@@ -35,6 +37,7 @@ public class ListController {
     }
 
     @RequestMapping(value = "")
+    /*handler method*/
     public String list(Model model) {
         model.addAttribute("columns", columnChoices);
         model.addAttribute("tableChoices", tableChoices);
@@ -47,6 +50,7 @@ public class ListController {
     }
 
     @RequestMapping(value = "jobs")
+    /*handler method*/
     public String listJobsByColumnAndValue(Model model, @RequestParam String column, @RequestParam String value) {
         ArrayList<Job> jobs;
         if (column.toLowerCase().equals("all")){
